@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MVC_LibraryPractice1.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<LibraryPractice1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryPractice1Context") ?? throw new InvalidOperationException("Connection string 'LibraryPractice1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
